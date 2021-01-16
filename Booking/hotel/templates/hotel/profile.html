@@ -1,0 +1,48 @@
+{% extends 'hotel/base.html' %}
+{% load static %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+<div class="container">
+	{% if messages %}
+	{% for k in messages %}
+	<div class="alert alert-{{k.tags}} alert-dismissible mt-3">
+  		<button type="button" class="close" data-dismiss="alert">&times;</button>{{k}}
+  	</div>
+	{% endfor %}
+	{% endif %}
+	<div class="row mt-4">
+		<div class="card col-md-3 col-sm-3 mx-2 my-2 h-100">
+			<h2 class="bg-info text-center mx-2 my-2 p-2 border rounded">Profile</h2>
+			<div class="card-body text-center"><img src="{{user.upd.im.url}}" class="pb-3" height="200px" width="100%"><h3 class="text-primary">{{user.username}}</h3></div>
+		</div>
+		<div class="card col-md col-sm mx-3 my-2">
+			<h2 class="bg-info text-center text-white mx-2 my-1 p-1 border rounded">Details</h2>
+			<div class="card-body">
+				<table class="table table-borderless">
+					<tr>
+						<td>Username:</td>
+						<td>{{user.username}}</td>
+					</tr>
+					<tr>
+						<td>Username:</td>
+						<td>{{user.first_name}}</td>
+					</tr>
+					<tr>
+						<td>Username:</td>
+						<td>{{user.last_name}}</td>
+					</tr>
+					<tr>
+						<td>Age:</td>
+						<td>{{user.upd.age}}</td>
+					</tr>
+					<tr>
+						<td>Gender:</td>
+						<td>{{user.upd.gender}}</td>
+					</tr>
+				</table>
+				<a href="{% url 'upd' %}" class="btn btn-success ml-auto mr-5 my-3" style="float:right">Update</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

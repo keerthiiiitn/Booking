@@ -1,0 +1,24 @@
+{% extends 'hotel/base.html' %}
+{% load static %}
+{% block title %}Registration{% endblock %}
+{% block content %}
+<div class="container mt-4 mb-4">
+	<!-- <img src="{% static 'images/registerbg.jpeg' %}" height="=600px" width="800%" class="rounded-circle"> -->
+	<div class="card col-md-5 mx-auto my-1 mt-3 shadow-lg">
+		<div class="card-body mx-1">
+			<center><img src="{% static 'images/register.jpg' %}" height="=80px" width="120px" class="rounded-circle"></center>
+			<form method="POST">
+				{% csrf_token %}
+				<table class="table table-borderless">
+					{% for i in form %}
+					<tr>
+						<td>{{i}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+				<input type="submit" class="form-control text-white btn btn-success btn-block mb-1 col-md-4" style="margin-left: 200px;font-size: 14px" name="Register">	
+			</form>		
+		</div>
+	</div>
+</div>
+{% endblock %}

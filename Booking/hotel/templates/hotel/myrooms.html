@@ -1,0 +1,36 @@
+{% extends 'hotel/base.html' %}
+{% block title %}Room List{% endblock %}
+{% block content %}
+<div class="container col-md-9 mt-4">
+	<div class="jumbotron border rounded">
+		<h2 class="p-3 text-white text-center bg-info border rounded mx-1 my-2">Rooms List</h2>
+		<table border="1" width="100%" class="table table-bordered table-hover col-md-12 mx-12">
+			<tr class="bg-dark text-white border rounded">
+				<th>S.no</th>
+				<th>Room_Number</th>
+				<th>Check in </th>
+				<th>Check out</th>
+				<th>Persons</th>
+				<th>Action</th>
+			</tr>
+			{% if rooms %}
+				{% for i in rooms %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{i.room_no.number}}</td>
+					<td>{{i.check_in}}</td>
+					<td>{{i.check_out}}</td>
+					<td>{{i.persons}}</td>
+					<td>
+						<button class="btn btn-warning border rounded"><a  class="text-white" href="{% url 'vacate' i.room_no.number %}">Vacate</a></button>
+					</td>
+				</tr>
+				{% endfor %}
+			{% else %}
+			<tr><td>You've not booked any rooms yet</td></tr>
+			{% endif %}
+		</table>
+		<button class='btn btn-info'><a class='text-white' href = "{% url 'rooms' %}">Book</a></button>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'hotel/base.html' %}
+{% block title %}Room List{% endblock %}
+{% block content %}
+<div class="container col-md-9 mt-4">
+	<div class="jumbotron border rounded">
+		<h2 class="p-3 text-white text-center bg-info border rounded mx-1 my-2">Rooms List</h2>
+		<table border="1" width="100%" class="table table-bordered table-hover col-md-12 mx-12">
+			<tr class="bg-dark text-white border rounded">
+				<th>S.no</th>
+				<th>Room Number</th>
+				<th>Room Type</th>
+				<th>Room_image</th>
+				<th>Category</th>
+				<th>Cost</th>
+				<th>Action</th>
+			</tr>
+			{% for i in rooms %}
+			<tr>
+				<td>{{forloop.counter}}</td>
+				<td>{{i.number}}</td>
+				<td>{{i.room_type}}</td>
+				<td><center><img src="{{i.image.url}}" width="40%" class="rounded"></center></td>
+				<td>{{i.category}}</td>
+				<td>{{i.cost}}</td>
+				<td>
+					<button class="btn btn-info border rounded"><a  class="text-white" href="{% url 'book_room' i.number %}">Book</a></button>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% load static %}
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+<!-- Brand/logo -->
+<a class="navbar-brand" href="{% url 'home' %}">
+<img src="{% static 'images/logo.jpg' %}" alt="logo" style="width:50px; height: 50px" class="rounded-circle">
+</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Navbar links -->
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'home' %}">Home</a>
+    </li>
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'register' %}">Register</a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li> -->
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'rooms' %}">Rooms</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'myrooms' request.user.id %}">My Rooms</a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+    </li> -->
+    {% endif %}
+  </ul>
+  <ul class="navbar-nav ml-auto" style="margin-right: 120px">
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login' %}">Login</a>
+    </li>
+    {% else %}
+    <li class="dropdown">
+      <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown"><img src="{{request.user.upd.im.url}}" height="25px" width="25px" class="rounded-circle"/></a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'pfl' %}">Profile</a>
+        <a class="dropdown-item" href="#">Change Password</a>
+        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+</nav>
